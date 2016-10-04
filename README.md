@@ -108,4 +108,5 @@ plc
 ```
 
 After that click "Add & Apply" at the bottom of the page  
+![Exec-Settings](https://raw.githubusercontent.com/oweitman/openwrt-collectd-plc/master/pic/openwrt-collectd-plc-settings.png)
 
