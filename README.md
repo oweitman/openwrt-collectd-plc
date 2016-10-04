@@ -108,7 +108,6 @@ plc
 ```
 
 After that click "Add & Apply" at the bottom of the page  
-![Exec-Settings](https://raw.githubusercontent.com/oweitman/openwrt-collectd-plc/master/pic/openwrt-collectd-plc-settings.png)
 
 <a href="https://raw.githubusercontent.com/oweitman/openwrt-collectd-plc/master/pic/openwrt-collectd-plc-settings.png" target="_blank">
 <img src="https://raw.githubusercontent.com/oweitman/openwrt-collectd-plc/master/pic/openwrt-collectd-plc-settings.png" alt="Exec-Settings" style="max-width:100%;"width="50%" height=%50%">
@@ -116,8 +115,8 @@ After that click "Add & Apply" at the bottom of the page
 
 ##Result
 For each Connection between 2 plc-devices where is one diagram.  
-In the title of the diagram you can see the last 5 characters of the MAC-ID of the plc-device.
-In this example 11111 as source and AAAAA as destination
+In the title of the diagram you can see the last 5 characters of the MAC-ID of the plc-device.   
+In this example 11111 as source and AAAAA as destination   
 
 <a href="https://raw.githubusercontent.com/oweitman/openwrt-collectd-plc/master/pic/openwrt-collectd-plc-diagram.png" target="_blank">
 <img src="https://raw.githubusercontent.com/oweitman/openwrt-collectd-plc/master/pic/openwrt-collectd-plc-diagram.png" alt="plc-diagram" style="max-width:100%;"width="50%" height=%50%">
