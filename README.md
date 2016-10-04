@@ -110,3 +110,6 @@ plc
 After that click "Add & Apply" at the bottom of the page  
 ![Exec-Settings](https://raw.githubusercontent.com/oweitman/openwrt-collectd-plc/master/pic/openwrt-collectd-plc-settings.png)
 
+<a href="https://raw.githubusercontent.com/oweitman/openwrt-collectd-plc/master/pic/openwrt-collectd-plc-settings.png" target="_blank">
+<img src="https://raw.githubusercontent.com/oweitman/openwrt-collectd-plc/master/pic/openwrt-collectd-plc-settings.png" alt="Exec-Settings" style="max-width:100%;"width="50%" height=%50%">
+</a>
