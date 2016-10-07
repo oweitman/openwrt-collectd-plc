@@ -38,6 +38,23 @@ while true; do
         src=$(echo $src|tail -c$LASTCHR)
         dst=$(echo $dst|tail -c$LASTCHR)
 
+        if [ -s "plc-lookup.txt" ]
+        then
+          while read mac name; do
+              if [[ $mac == $src ]]
+              then
+                  src=$name
+              fi
+          done <plc-lookup.txt
+
+          while read mac name; do
+              if [[ $mac == $dst ]]; then
+                  dst=$name
+              fi
+          done <"plc-lookup.txt"
+
+        fi       
+
         #write data to collectd
         echo "PUTVAL \"$COLLECTD_HOSTNAME/exec-plc/plc_${typ}-${src}_${dst}\" interval=$INTERVAL N:$speed"
       fi
