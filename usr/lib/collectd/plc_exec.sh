@@ -13,7 +13,7 @@ LASTCHR=$((5+1))
 while true; do
 
   #get data from amprate-tool. for each connection there are 2 lines (RX/TX)
-  sudo amprate -i $INTERFACE |
+  sudo amprate -i $INTERFACE all |
     while IFS= read -r line
     do
 
@@ -28,12 +28,19 @@ while true; do
       src=${src//[:]/}
       dst=${dst//[:]/}
 
-      #shorten addresses
-      src=$(echo $src|tail -c$LASTCHR)
-      dst=$(echo $dst|tail -c$LASTCHR)
+      #filter connections
+      #'amprate all' returns between 2 devices double results (src -> dst and dst->src)
+      #we only take these connections where the src-mac is lesser than the dst-max
+      if [[ "$(echo $src $dst| awk '{ print ($1 < $2) ? "true" : "false" }')" == "true" ]]
+      then
 
-      #write data to collectd
-      echo "PUTVAL \"$COLLECTD_HOSTNAME/exec-plc/plc_${typ}-${src}_${dst}\" interval=$INTERVAL N:$speed"
+        #shorten addresses
+        src=$(echo $src|tail -c$LASTCHR)
+        dst=$(echo $dst|tail -c$LASTCHR)
+
+        #write data to collectd
+        echo "PUTVAL \"$COLLECTD_HOSTNAME/exec-plc/plc_${typ}-${src}_${dst}\" interval=$INTERVAL N:$speed"
+      fi
 
   }
 

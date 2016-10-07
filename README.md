@@ -1,10 +1,11 @@
 #openwrt-collectd-plc
 This is a statistics-plugin for powerlan devices (also called "Power line communication" (plc),powerlan, dLan, HomePlug).  
-It is written for the collectd-deamon used by the luci-statistics-application in openwrt.  
+It is written for the collectd-deamon, used by the luci-statistics-application in openwrt.  
 
 It uses the amprate-tool from the open-plc-utils from Qualcom Atheros for the atheros-chipset (used by TP-Link,devolo, and more)  
 More Informatione about the open-plc-tools https://github.com/qca/open-plc-utils and compatible chipset.  
-The following steps edit some dangerous files. Please backup your configuration.  
+The following steps edit some dangerous files. Please backup your configuration.
+Later if this package is tested, i want to add an installation-script.
 
 
 ##Step1.1
