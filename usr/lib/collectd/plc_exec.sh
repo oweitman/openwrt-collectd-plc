@@ -7,6 +7,7 @@ INTERFACE=${INTERFACE:="br-lan"}
 INTERVAL=${COLLECTD_INTERVAL:=30}
 # COLLECTD_INTERVAL may have trailing decimal places, but sleep rejects floating point.
 INTERVAL=$(printf %.0f $INTERVAL)
+BASEDIR=$(dirname "$0")
 
 LASTCHR=$((5+1))
 
@@ -14,9 +15,10 @@ while true; do
 
   #get data from amprate-tool. for each connection there are 2 lines (RX/TX)
   sudo amprate -i $INTERFACE all |
+    
     while IFS= read -r line
     do
-
+    EPOCH=$(date +%s)
     #for each line get parameter to variables
     echo "$line" | {
       IFS=' ' read -r iface src dst typ speed size primary 
@@ -38,25 +40,24 @@ while true; do
         src=$(echo $src|tail -c$LASTCHR)
         dst=$(echo $dst|tail -c$LASTCHR)
 
-        if [ -s "plc-lookup.txt" ]
+        if [ -s "$BASEDIR/plc-lookup.txt" ]
         then
           while read mac name; do
               if [[ $mac == $src ]]
               then
                   src=$name
               fi
-          done <plc-lookup.txt
+          done <"$BASEDIR/plc-lookup.txt"
 
           while read mac name; do
               if [[ $mac == $dst ]]; then
                   dst=$name
               fi
-          done <"plc-lookup.txt"
+          done <"$BASEDIR/plc-lookup.txt"
 
-        fi       
-
+        fi
         #write data to collectd
-        echo "PUTVAL \"$COLLECTD_HOSTNAME/exec-plc/plc_${typ}-${src}_${dst}\" interval=$INTERVAL N:$speed"
+        echo "PUTVAL \"$COLLECTD_HOSTNAME/exec-plc/plc_${typ}-${src}_${dst}\" interval=$INTERVAL $EPOCH:$speed"
       fi
 
   }
